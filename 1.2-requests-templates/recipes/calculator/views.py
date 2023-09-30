@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound
 
 DATA = {
     'omlet': {
@@ -19,12 +20,20 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+
+def home_page(request):
+    return HttpResponse('Главная страница')
+
+
+def recipes(request, menu):
+    serving = int(request.GET.get('serving'))
+    dish = DATA.get(menu, None)
+    dict_menu = {}
+    for recipe, food in dish.items():
+        result = {recipe: round(food * serving, 2)}
+        dict_menu.update(result)
+    if dish:
+        context = {'recipe': dict_menu}
+        return render(request, 'calculator/index.html', context)
+    else:
+        return HttpResponseNotFound("Такого блюда нет в меню")
