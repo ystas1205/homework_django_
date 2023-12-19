@@ -20,6 +20,7 @@ def bus_stations(request):
     page_number = int(request.GET.get("page", 1))
     pagination = Paginator(reading_file(request), 10)
     page = pagination.get_page(page_number)
+
     context = {
         'bus_stations': page,
         'page': page,

@@ -32,6 +32,7 @@ def recipes(request, menu):
     for recipe, food in dish.items():
         result = {recipe: round(food * serving, 2)}
         dict_menu.update(result)
+        print(dict_menu)
     if dish:
         context = {'recipe': dict_menu}
         return render(request, 'calculator/index.html', context)

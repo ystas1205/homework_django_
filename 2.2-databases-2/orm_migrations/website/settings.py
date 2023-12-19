@@ -36,10 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 'debug_toolbar'
     'school',
 ]
 
 MIDDLEWARE = [
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,6 +80,8 @@ DATABASES = {
         'NAME': 'netology_orm_migrations',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'USER': 'ystas',
+        'PASSWORD': '8490866',
     }
 }
 
@@ -131,3 +137,8 @@ try:
 except ImportError:
     pass
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]

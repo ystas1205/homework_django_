@@ -33,6 +33,7 @@
 ```html
 {% for teacher in student.teachers.all %}
 <p>{{ teacher.name }}: {{ teacher.subject }}</p>
+    
 {% endfor %}
 ```
 
